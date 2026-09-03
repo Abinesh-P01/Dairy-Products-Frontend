@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin - Fresh Dairy Admin</title>
+    <link rel="icon" href="../logo.jpg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img class="logo-icon" src="../logo.jpg" alt="Lumina">
+                Fresh Dairy
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Store</a>
+            </div>
+            <div class="nav-actions">
+                <span style="font-size:0.9rem;color:var(--text-light);">Admin Panel</span>
+                <a href="../cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p>Welcome, Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <span class="nav-icon">&#128202;</span>
+                    Dashboard
+                </a>
+                <a href="products.html">
+                    <span class="nav-icon">&#128230;</span>
+                    Products
+                </a>
+                <a href="add-product.html">
+                    <span class="nav-icon">&#10133;</span>
+                    Add Product
+                </a>
+                <a href="orders.html">
+                    <span class="nav-icon">&#128196;</span>
+                    Orders
+                </a>
+                <a href="support.html">
+                    <span class="nav-icon">&#128172;</span>
+                    Support
+                </a>
+                <a href="add-admin.html" class="active">
+                    <span class="nav-icon">&#128101;</span>
+                    Add Admin
+                </a>
+                <a href="#" class="logout" onclick="adminLogout()">
+                    <span class="nav-icon">&#128682;</span>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button class="admin-sidebar-toggle" onclick="toggleAdminSidebar()">&#9776;</button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Add New Admin</h1>
+                <p>Create a new administrator account</p>
+            </div>
+
+            <div class="admin-form">
+                <h2>Admin Details</h2>
+                <form id="add-admin-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="admin-new-username">Username *</label>
+                        <input type="text" id="admin-new-username" placeholder="Enter admin username" autocomplete="off">
+                        <div class="error-text">Username is required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin-new-password">Password *</label>
+                        <input type="password" id="admin-new-password" placeholder="Enter admin password" autocomplete="new-password">
+                        <div class="error-text">Password is required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin-confirm-password">Confirm Password *</label>
+                        <input type="password" id="admin-confirm-password" placeholder="Re-enter password" autocomplete="new-password">
+                        <div class="error-text">Passwords do not match</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" onclick="registerAdmin()">Create Admin</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

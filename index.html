@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina - Premium Dairy Products</title>
+    <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="logo.jpg" alt="Lumina">
+                lumina
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="products.html">Products</a>
+                <a href="my-orders.html">My Orders</a>
+                <a href="support.html">Support</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <span id="nav-auth-link"><a href="login.html">Login</a></span>
+                <a href="admin/login.html" class="btn btn-sm btn-secondary">Admin</a>
+                <a href="cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Lumina Products<br>Delivered to Your Door</h1>
+            <p>Experience the pure taste of farm-fresh milk, cheese, yogurt, and more. Quality you can trust, delivered with care.</p>
+            <div class="hero-buttons">
+                <a href="products.html" class="btn btn-primary btn-lg">Shop Now</a>
+                <a href="#features" class="btn btn-secondary btn-lg">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Featured Products</h2>
+                <p>Handpicked selection of our finest dairy products</p>
+            </div>
+            <div id="featured-products" class="products-grid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="products.html" class="btn btn-secondary">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section" id="features" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>We bring quality and freshness to your doorstep</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#127793;</div>
+                    <h3>Fresh &amp; Natural</h3>
+                    <p>All our products are sourced directly from local farms, ensuring natural freshness in every drop.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#11088;</div>
+                    <h3>Quality Products</h3>
+                    <p>We maintain strict quality standards so you always get the best dairy products.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128666;</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable delivery right to your doorstep. Fresh products, fast.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128176;</div>
+                    <h3>Best Prices</h3>
+                    <p>Premium quality dairy at competitive prices. Great value for your money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Lumina</h2>
+                <p>Bringing the farm to your table since 2020</p>
+            </div>
+            <div style="max-width:800px;margin:0 auto;text-align:center;color:var(--text-light);font-size:1.05rem;line-height:1.8;">
+                <p>At Lumina, we believe that everyone deserves access to pure, high-quality dairy products. Our journey started with a simple mission: to connect local farmers with consumers who value freshness and quality.</p>
+                <br>
+                <p>We work closely with certified dairy farms that follow ethical practices and maintain the highest standards of hygiene and quality. From creamy milk to rich butter, from fresh yogurt to aged cheese, every product in our catalog is carefully selected and delivered with care.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" style="background: var(--white);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>We'd love to hear from you</p>
+            </div>
+            <div style="display:flex;gap:1.5rem;justify-content:center;align-items:stretch;flex-wrap:wrap;">
+                <div class="feature-card" style="text-align:center;flex:1;min-width:200px;max-width:300px;">
+                    <div class="feature-icon">&#128231;</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:support@lumina.com" style="color:var(--primary);font-weight:600;">support@lumina.com</a></p>
+                </div>
+                <div class="feature-card" style="text-align:center;flex:1;min-width:200px;max-width:300px;">
+                    <div class="feature-icon">&#128222;</div>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+919876543210" style="color:var(--primary);font-weight:600;">+91 98765 43210</a></p>
+                </div>
+                <div class="feature-card" style="text-align:center;flex:1;min-width:200px;max-width:300px;">
+                    <div class="feature-icon">&#128205;</div>
+                    <h3>Address</h3>
+                    <p><a href="https://www.google.com/maps/search/?api=1&query=123+Dairy+Lane+Farmville+India" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">123 Dairy Lane, Farmville, India - 400001</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><img src="./logo.jpg" alt="Lumina Dairy Products"> Lumina</h3>
+                    <p>Your trusted source for premium dairy products. Farm fresh, delivered to your doorstep.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="products.html">Milk</a></li>
+                        <li><a href="products.html">Cheese</a></li>
+                        <li><a href="products.html">Yogurt</a></li>
+                        <li><a href="products.html">Butter &amp; Cream</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#contact">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lumina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/user.js"></script>
+    <script>
+        async function loadFeaturedProducts() {
+            const grid = document.getElementById('featured-products');
+            try {
+                const data = await apiCall('/products');
+                const products = Array.isArray(data) ? data : (data.products || data.data || []);
+                const featured = products.slice(0, 4);
+
+                if (featured.length === 0) {
+                    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">&#129472;</div><h3>Products coming soon!</h3></div>';
+                    return;
+                }
+
+                grid.innerHTML = featured.map(product => {
+                    const id = getProductId(product);
+                    const name = getProductName(product);
+                    const price = getProductPrice(product);
+                    const stock = getProductStock(product);
+                    const description = getProductDescription(product);
+                    const image = getProductImage(product);
+
+                    const imageHtml = image
+                        ? `<img src="${image}" alt="${name}" onerror="this.parentElement.innerHTML='&#129472;'">`
+                        : '&#129472;';
+
+                    const stockClass = stock <= 5 ? 'low-stock' : '';
+                    const stockText = stock <= 0 ? 'Out of Stock' : `${stock} in stock`;
+
+                    return `
+                        <div class="product-card">
+                            <div class="product-image" onclick="window.location.href='product-details.html?id=${id}'">
+                                ${imageHtml}
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name" onclick="window.location.href='product-details.html?id=${id}'">${name}</h3>
+                                <div class="product-price">${formatCurrency(price)}</div>
+                                <div class="product-stock ${stockClass}">${stockText}</div>
+                                ${description ? `<p class="product-description">${description}</p>` : ''}
+                                <div class="product-actions">
+                                    <button class="btn btn-secondary btn-sm" onclick="addToCartHelper(${JSON.stringify(product).replace(/"/g, '&quot;')})" ${stock <= 0 ? 'disabled' : ''}>Add to Cart</button>
+                                    <button class="btn btn-primary btn-sm" onclick="window.location.href='product-details.html?id=${id}'" ${stock <= 0 ? 'disabled' : ''}>Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                grid.innerHTML = '<div class="empty-state"><div class="empty-icon">&#129472;</div><h3>Products coming soon!</h3><p>Our dairy products will be available shortly.</p></div>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadFeaturedProducts);
+    </script>
+</body>
+</html>

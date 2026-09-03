@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Lumina</title>
+    <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="logo.jpg" alt="Lumina">
+                Lumina
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="my-orders.html" class="active">My Orders</a>
+                <a href="support.html">Support</a>
+            </div>
+            <div class="nav-actions">
+                <span id="nav-auth-link"><a href="login.html">Login</a></span>
+                <a href="admin/login.html" class="btn btn-sm btn-secondary">Admin</a>
+                <a href="cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>My Orders</h1>
+        <p>View and manage your placed orders</p>
+    </div>
+
+    <!-- Orders List -->
+    <section class="section">
+        <div class="container">
+            <div id="my-orders-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading your orders...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lumina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/my-orders.js"></script>
+</body>
+</html>
