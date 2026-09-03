@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Fresh Dairy Admin</title>
+    <link rel="icon" href="../logo.jpg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img class="logo-icon" src="../logo.jpg" alt="Lumina">
+                Fresh Dairy
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Store</a>
+            </div>
+            <div class="nav-actions">
+                <span style="font-size:0.9rem;color:var(--text-light);">Admin Panel</span>
+                <a href="../cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p>Welcome, Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <span class="nav-icon">&#128202;</span>
+                    Dashboard
+                </a>
+                <a href="products.html">
+                    <span class="nav-icon">&#128230;</span>
+                    Products
+                </a>
+                <a href="add-product.html" class="active">
+                    <span class="nav-icon">&#10133;</span>
+                    Add Product
+                </a>
+                <a href="orders.html">
+                    <span class="nav-icon">&#128196;</span>
+                    Orders
+                </a>
+                <a href="#" class="logout" onclick="adminLogout()">
+                    <span class="nav-icon">&#128682;</span>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button class="admin-sidebar-toggle" onclick="toggleAdminSidebar()">&#9776;</button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Add New Product</h1>
+                <p>Add a new dairy product to your store</p>
+            </div>
+
+            <div class="admin-form">
+                <h2>Product Details</h2>
+                <form id="add-product-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="product-name">Product Name *</label>
+                        <input type="text" id="product-name" placeholder="e.g., Fresh Whole Milk">
+                        <div class="error-text">Product name is required</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price">Price (₹) *</label>
+                            <input type="number" id="product-price" step="0.01" min="0" placeholder="e.g., 49.99">
+                            <div class="error-text">Valid price is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-stock">Stock Quantity *</label>
+                            <input type="number" id="product-stock" min="0" placeholder="e.g., 100">
+                            <div class="error-text">Valid stock quantity is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" rows="4" placeholder="Describe your product..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image">Product Image</label>
+                        <input type="file" id="product-image" accept="image/*" onchange="previewImage(this, 'product-image-preview')">
+                        <div id="product-image-preview" style="margin-top:0.75rem;padding:1rem;background:var(--light-gray);border-radius:6px;text-align:center;color:var(--text-light);font-size:0.9rem;">No image selected</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Category</label>
+                        <select id="product-category">
+                            <option value="">Select category</option>
+                            <option value="milk">Milk</option>
+                            <option value="cheese">Cheese</option>
+                            <option value="yogurt">Yogurt</option>
+                            <option value="butter">Butter</option>
+                            <option value="cream">Cream</option>
+                            <option value="ice-cream">Ice Cream</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" onclick="createProduct()">Add Product</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetProductPreview()">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

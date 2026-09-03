@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Fresh Dairy</title>
+    <link rel="icon" href="../logo.jpg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img class="logo-icon" src="../logo.jpg" alt="Lumina">
+                Fresh Dairy
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Store</a>
+            </div>
+            <div class="nav-actions">
+                <span style="font-size:0.9rem;color:var(--text-light);">Admin Panel</span>
+                <a href="../cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p>Welcome, Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active">
+                    <span class="nav-icon">&#128202;</span>
+                    Dashboard
+                </a>
+                <a href="products.html">
+                    <span class="nav-icon">&#128230;</span>
+                    Products
+                </a>
+                <a href="add-product.html">
+                    <span class="nav-icon">&#10133;</span>
+                    Add Product
+                </a>
+                <a href="orders.html">
+                    <span class="nav-icon">&#128196;</span>
+                    Orders
+                </a>
+                <a href="support.html">
+                    <span class="nav-icon">&#128172;</span>
+                    Support
+                </a>
+                <a href="add-admin.html">
+                    <span class="nav-icon">&#128101;</span>
+                    Add Admin
+                </a>
+                <a href="#" class="logout" onclick="adminLogout()">
+                    <span class="nav-icon">&#128682;</span>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button class="admin-sidebar-toggle" onclick="toggleAdminSidebar()">&#9776;</button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Dashboard</h1>
+                <p>Overview of your dairy store</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon green">&#128230;</div>
+                    <div class="stat-info">
+                        <h3 id="stat-products">0</h3>
+                        <p>Total Products</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue">&#128196;</div>
+                    <div class="stat-info">
+                        <h3 id="stat-orders">0</h3>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">&#128218;</div>
+                    <div class="stat-info">
+                        <h3 id="stat-stock">0</h3>
+                        <p>Total Stock</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Products -->
+            <div class="admin-table-container">
+                <div class="admin-table-header">
+                    <h2>Recent Products</h2>
+                    <a href="products.html" class="btn btn-secondary btn-sm">View All</a>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-products-body">
+                        <tr>
+                            <td colspan="4" class="text-center" style="padding:2rem;">
+                                <div class="loading">
+                                    <div class="spinner"></div>
+                                    <p>Loading...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

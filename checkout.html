@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout -Lumina</title>
+    <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="logo.jpg" alt="Lumina">
+               Lumina
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="my-orders.html">My Orders</a>
+                <a href="support.html">Support</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <span id="nav-auth-link"><a href="login.html">Login</a></span>
+                <a href="admin/login.html" class="btn btn-sm btn-secondary">Admin</a>
+                <a href="cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Page -->
+    <section class="checkout-page">
+        <div class="container">
+            <h1>Checkout</h1>
+            <div class="checkout-layout">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <h2>Delivery Information</h2>
+
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name *</label>
+                        <input type="text" id="customer-name" placeholder="Enter your full name">
+                        <div class="error-text">Customer name is required</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer-mobile">Mobile Number *</label>
+                            <input type="tel" id="customer-mobile" placeholder="10-digit mobile number" maxlength="10">
+                            <div class="error-text">Valid mobile number is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email">Email *</label>
+                            <input type="email" id="customer-email" placeholder="your@email.com">
+                            <div class="error-text">Valid email is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-address">Delivery Address *</label>
+                        <textarea id="customer-address" placeholder="Enter your full delivery address" rows="3"></textarea>
+                        <div class="error-text">Delivery address is required</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer-city">City *</label>
+                            <input type="text" id="customer-city" placeholder="City">
+                            <div class="error-text">City is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-pincode">Pincode *</label>
+                            <input type="text" id="customer-pincode" placeholder="6-digit pincode" maxlength="6">
+                            <div class="error-text">Valid 6-digit pincode is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method *</label>
+                        <select id="payment-method">
+                            <option value="">Select payment method</option>
+                            <option value="cod">Cash on Delivery</option>
+                            <option value="upi">UPI</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="netbanking">Net Banking</option>
+                        </select>
+                        <div class="error-text">Payment method is required</div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg" onclick="placeOrder()" style="width:100%;margin-top:0.5rem;">
+                        Place Order
+                    </button>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-summary-items"></div>
+                    <div class="order-total">
+                        <span>Total</span>
+                        <span id="checkout-total">₹0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026Lumina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

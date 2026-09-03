@@ -1,0 +1,151 @@
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 992px) {
+    .product-detail .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        gap: 1rem;
+        transform: translateY(-120%);
+        transition: var(--transition);
+        z-index: 999;
+    }
+
+    .navbar .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 2.5rem 1rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-bar .price-filter {
+        width: 100%;
+    }
+
+    .filter-bar .price-filter input {
+        flex: 1;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail .detail-image {
+        height: 280px;
+        font-size: 5rem;
+    }
+
+    .detail-actions {
+        flex-direction: column;
+    }
+
+    .detail-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .navbar .logo {
+        font-size: 1.2rem;
+    }
+
+    .navbar .logo .logo-icon {
+        font-size: 1.5rem;
+        height: 32px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero::before {
+        width: 380px;
+        height: 380px;
+    }
+
+    .cart-item .item-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .login-card {
+        padding: 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

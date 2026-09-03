@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - Fresh Dairy Admin</title>
+    <link rel="icon" href="../logo.jpg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img class="logo-icon" src="../logo.jpg" alt="Lumina">
+                Fresh Dairy
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Store</a>
+            </div>
+            <div class="nav-actions">
+                <span style="font-size:0.9rem;color:var(--text-light);">Admin Panel</span>
+                <a href="../cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+                <p>Welcome, Admin</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <span class="nav-icon">&#128202;</span>
+                    Dashboard
+                </a>
+                <a href="products.html" class="active">
+                    <span class="nav-icon">&#128230;</span>
+                    Products
+                </a>
+                <a href="add-product.html">
+                    <span class="nav-icon">&#10133;</span>
+                    Add Product
+                </a>
+                <a href="orders.html">
+                    <span class="nav-icon">&#128196;</span>
+                    Orders
+                </a>
+                <a href="support.html">
+                    <span class="nav-icon">&#128172;</span>
+                    Support
+                </a>
+                <a href="add-admin.html">
+                    <span class="nav-icon">&#128101;</span>
+                    Add Admin
+                </a>
+                <a href="#" class="logout" onclick="adminLogout()">
+                    <span class="nav-icon">&#128682;</span>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button class="admin-sidebar-toggle" onclick="toggleAdminSidebar()">&#9776;</button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Products</h1>
+                <p>Manage your dairy products</p>
+            </div>
+
+            <!-- Products Table -->
+            <div class="admin-table-container">
+                <div class="admin-table-header">
+                    <h2>All Products</h2>
+                    <a href="add-product.html" class="btn btn-primary btn-sm">+ Add Product</a>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-products-body">
+                        <tr>
+                            <td colspan="5" class="text-center" style="padding:2rem;">
+                                <div class="loading">
+                                    <div class="spinner"></div>
+                                    <p>Loading products...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Edit Product</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <input type="hidden" id="edit-product-id">
+            <div class="form-group">
+                <label for="edit-product-name">Product Name *</label>
+                <input type="text" id="edit-product-name">
+            </div>
+            <div class="form-group">
+                <label for="edit-product-price">Price *</label>
+                <input type="number" id="edit-product-price" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+                <label for="edit-product-stock">Stock Quantity *</label>
+                <input type="number" id="edit-product-stock" min="0">
+            </div>
+            <div class="form-group">
+                <label for="edit-product-description">Description</label>
+                <textarea id="edit-product-description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-product-image">Product Image</label>
+                <input type="file" id="edit-product-image" accept="image/*" onchange="previewImage(this, 'edit-product-image-preview')">
+                <div id="edit-product-image-preview" style="margin-top:0.75rem;padding:0.75rem;background:var(--light-gray);border-radius:6px;text-align:center;color:var(--text-light);font-size:0.85rem;">No image</div>
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                <button class="btn btn-primary" onclick="updateProduct()" style="flex:1;">Update Product</button>
+                <button class="btn btn-secondary" onclick="closeEditModal()" style="flex:1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div class="modal-overlay" id="stock-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Update Stock</h2>
+                <button class="modal-close" onclick="closeStockModal()">&times;</button>
+            </div>
+            <input type="hidden" id="stock-product-id">
+            <p style="margin-bottom:1rem;">Product: <strong id="stock-product-name"></strong></p>
+            <div class="form-group">
+                <label for="stock-new-quantity">New Stock Quantity</label>
+                <input type="number" id="stock-new-quantity" min="0">
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                <button class="btn btn-primary" onclick="updateStock()" style="flex:1;">Update Stock</button>
+                <button class="btn btn-secondary" onclick="closeStockModal()" style="flex:1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Delete Product</h2>
+                <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+            </div>
+            <input type="hidden" id="delete-product-id">
+            <p style="margin-bottom:1rem;">Are you sure you want to delete <strong id="delete-product-name"></strong>? This action cannot be undone.</p>
+            <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                <button class="btn btn-danger" onclick="deleteProduct()" style="flex:1;">Delete Product</button>
+                <button class="btn btn-secondary" onclick="closeDeleteModal()" style="flex:1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

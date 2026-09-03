@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - lumina</title>
+    <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="logo.jpg" alt="Lumina">
+                Lumina
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="my-orders.html">My Orders</a>
+                <a href="support.html">Support</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <span id="nav-auth-link"><a href="login.html">Login</a></span>
+                <a href="admin/login.html" class="btn btn-sm btn-secondary">Admin</a>
+                <a href="cart.html" class="cart-icon">
+                    &#128722;
+                    <span class="cart-badge">0</span>
+                </a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>&gt;</span>
+        <a href="products.html">Products</a>
+        <span>&gt;</span>
+        <span id="breadcrumb-name">Product Details</span>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="container">
+            <div id="detail-content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading product details...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Fresh Dairy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/user.js"></script>
+    <script>
+        let currentProduct = null;
+        let selectedQty = 1;
+
+        async function loadProductDetail() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('detail-content');
+
+            if (!id) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <div class="empty-icon">&#128533;</div>
+                        <h3>Product not found</h3>
+                        <p>No product ID specified.</p>
+                        <a href="products.html" class="btn btn-primary mt-2">Browse Products</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const data = await apiCall('/products');
+                const products = Array.isArray(data) ? data : (data.products || data.data || []);
+                currentProduct = products.find(p => String(getProductId(p)) === String(id));
+
+                if (!currentProduct) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column:1/-1;">
+                            <div class="empty-icon">&#128533;</div>
+                            <h3>Product not found</h3>
+                            <p>The product you're looking for doesn't exist.</p>
+                            <a href="products.html" class="btn btn-primary mt-2">Browse Products</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const name = getProductName(currentProduct);
+                const price = getProductPrice(currentProduct);
+                const stock = getProductStock(currentProduct);
+                const description = getProductDescription(currentProduct);
+                const image = getProductImage(currentProduct);
+
+                document.getElementById('breadcrumb-name').textContent = name;
+                document.title = `${name} - Fresh Dairy`;
+
+                const imageHtml = image
+                    ? `<img src="${image}" alt="${name}" onerror="this.parentElement.innerHTML='&#129472;'">`
+                    : '&#129472;';
+
+                const stockClass = stock <= 5 ? 'color:#d32f2f;font-weight:600;' : '';
+                const stockText = stock <= 0 ? 'Out of Stock' : `${stock} available in stock`;
+                const maxAttr = stock > 0 ? `max="${stock}"` : '';
+
+                container.innerHTML = `
+                    <div class="detail-image">
+                        ${imageHtml}
+                    </div>
+                    <div class="detail-info">
+                        <h1>${name}</h1>
+                        <div class="detail-price">${formatCurrency(price)}</div>
+                        <div class="detail-stock" style="${stockClass}">${stockText}</div>
+                        ${description ? `<div class="detail-description">${description}</div>` : ''}
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <div class="qty-controls">
+                                <button onclick="changeDetailQty(-1)">−</button>
+                                <input type="number" id="detail-qty" value="1" min="1" ${maxAttr} onchange="validateDetailQty()">
+                                <button onclick="changeDetailQty(1)">+</button>
+                            </div>
+                        </div>
+                        <div class="detail-actions">
+                            <button class="btn btn-secondary btn-lg" onclick="addDetailToCart()" ${stock <= 0 ? 'disabled' : ''}>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-primary btn-lg" onclick="buyDetailNow()" ${stock <= 0 ? 'disabled' : ''}>
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <div class="empty-icon">&#9888;</div>
+                        <h3>Failed to load product</h3>
+                        <p>${error.message}</p>
+                        <a href="products.html" class="btn btn-primary mt-2">Browse Products</a>
+                    </div>
+                `;
+            }
+        }
+
+        function changeDetailQty(delta) {
+            const input = document.getElementById('detail-qty');
+            if (!input || !currentProduct) return;
+            const stock = getProductStock(currentProduct);
+            let newQty = parseInt(input.value) + delta;
+            if (newQty < 1) newQty = 1;
+            if (newQty > stock) {
+                newQty = stock;
+                showToast(`Maximum available quantity is ${stock}`, 'warning');
+            }
+            input.value = newQty;
+            selectedQty = newQty;
+        }
+
+        function validateDetailQty() {
+            const input = document.getElementById('detail-qty');
+            if (!input || !currentProduct) return;
+            const stock = getProductStock(currentProduct);
+            let qty = parseInt(input.value);
+            if (isNaN(qty) || qty < 1) qty = 1;
+            if (qty > stock) qty = stock;
+            input.value = qty;
+            selectedQty = qty;
+        }
+
+        function addDetailToCart() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('detail-qty').value) || 1;
+            addToCartHelper(currentProduct, qty);
+        }
+
+        function buyDetailNow() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('detail-qty').value) || 1;
+            addToCartHelper(currentProduct, qty);
+            window.location.href = 'cart.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProductDetail);
+    </script>
+</body>
+</html>
